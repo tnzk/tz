@@ -87,30 +87,30 @@
   </div>
 </div>
 
-{#if tz1 && tz2}
-  <div class="text-center my-3">
-    <button class="btn btn-primary" on:click={reset}>Now</button>
+{#if tz1 && tz2 && time}
+  <div class="text-center my-1">
+    <a class="btn btn-primary" href="/{tz1}/{tz2}">Back</a>
   </div>
 {/if}
 
 {#if tz1 && tz2}
-  <div class="max-w-xl mx-auto">
+  <div class="max-w-xl mx-auto mt-3">
     <table class="table table-zebra w-full">
       <thead>
         <tr>
-          <th>{tz1}</th>
-          <th>-</th>
+          <th class="text-right">{tz1}</th>
+          <th class="text-center">-</th>
           <th>{tz2}</th>
         </tr>
       </thead>
       <tbody>
         {#each slots as slot, i}
           <tr>
-            <td>
-              <div class="badge {isDay(slot.tz1) ? 'badge-warning' : 'badge-nautral'} gap-2 mr-1"></div>
-              {slot.tz1.toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY)}
+            <td class="text-right">
+              <span class="font-bold text-3xl">{slot.tz1.toLocaleString(DateTime.TIME_SIMPLE)}</span>
+              <div class="badge {isDay(slot.tz1) ? 'badge-warning' : 'badge-nautral'} gap-2 ml-1"></div>
             </td>
-            <td>
+            <td class="text-center">
               {#if i === 12}
                 Selected
               {:else}
@@ -121,7 +121,7 @@
             </td>
             <td>
               <div class="badge {isDay(slot.tz2) ? 'badge-warning' : 'badge-nautral'} gap-2 mr-1"></div>
-              {slot.tz2.toLocaleString(DateTime.DATETIME_MED_WITH_WEEKDAY)}
+              <span class="font-bold text-3xl">{slot.tz2.toLocaleString(DateTime.TIME_SIMPLE)}</span>
             </td>
           </tr>
         {/each}
